@@ -10,10 +10,13 @@ import Link from "next/link";
 import { BeerCatalogue } from "./beer-catalogue";
 import { HeroCarousel } from "./hero-carousel";
 import { ParallaxField } from "./parallax-field";
+import { ProcessGallery } from "./process-gallery";
+import { RevealOnScroll } from "./reveal-on-scroll";
 
 export default function Home() {
   return (
     <main className="min-h-screen bg-[#fffdfa] text-[#231814]">
+      <RevealOnScroll />
       <header className="sticky top-0 z-50 border-b border-[#eaded4]/80 bg-[#fffdfa]/88 backdrop-blur-xl">
         <nav className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
           <Link href="/" className="flex items-center gap-3" aria-label="Antares Brewing home">
@@ -54,9 +57,17 @@ export default function Home() {
       </header>
 
       <section className="grain relative overflow-hidden">
+        <div
+          className="absolute inset-0 bg-cover bg-center opacity-[0.13]"
+          style={{
+            backgroundImage:
+              "url(https://images.unsplash.com/photo-1518176258769-f227c798150e?auto=format&fit=crop&w=1800&q=80)",
+          }}
+          aria-hidden="true"
+        />
         <ParallaxField />
         <div className="mx-auto grid min-h-[calc(100svh-4rem)] max-w-6xl content-end px-4 pb-6 pt-8 sm:px-6 lg:grid-cols-[1.1fr_0.9fr] lg:items-end lg:gap-10 lg:pb-10">
-          <div className="relative z-10 pb-8">
+          <div className="relative z-10 pb-8 reveal-up">
             <p className="mb-4 inline-flex items-center gap-2 rounded-sm border border-[#eaded4] bg-white px-3 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-[#77685f]">
               <Sparkles size={14} />
               Handmade beer catalogue
@@ -91,7 +102,7 @@ export default function Home() {
       <section id="beers" className="relative overflow-hidden py-16 sm:py-24">
         <div className="parallax-band parallax-band-one" aria-hidden="true" />
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
-          <div className="mb-8 max-w-2xl">
+          <div className="mb-8 max-w-2xl reveal-up">
             <div>
               <p className="text-sm font-bold uppercase tracking-[0.18em] text-[#a7662b]">
                 Beers
@@ -104,13 +115,15 @@ export default function Home() {
         </div>
       </section>
 
+      <ProcessGallery />
+
       <section
         id="about"
         className="relative overflow-hidden border-y border-[#eaded4] bg-white py-16 sm:py-24"
       >
         <div className="parallax-band parallax-band-two" aria-hidden="true" />
         <div className="relative mx-auto grid max-w-6xl gap-10 px-4 sm:px-6 lg:grid-cols-[0.8fr_1.2fr] lg:items-start">
-          <div>
+          <div className="reveal-up">
             <p className="text-sm font-bold uppercase tracking-[0.18em] text-[#a7662b]">
               About us
             </p>
@@ -125,7 +138,7 @@ export default function Home() {
               ["The style", "Minimal white space, warm brown details, and enough personality to feel crafted rather than generic."],
               ["What comes next", "Add the final logo, real photos, Cloudflare email, and a persistent database when ready."],
             ].map(([title, text]) => (
-              <div key={title} className="rounded-sm border border-[#eaded4] bg-[#fffdfa] p-5">
+              <div key={title} className="reveal-up rounded-sm border border-[#eaded4] bg-[#fffdfa] p-5">
                 <h3 className="font-bold">{title}</h3>
                 <p className="mt-3 text-sm leading-6 text-[#66554c]">{text}</p>
               </div>

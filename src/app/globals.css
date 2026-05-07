@@ -50,6 +50,22 @@ button {
   color: #1d1410;
 }
 
+.reveal-up {
+  opacity: 0;
+  transform: translateY(22px);
+  transition:
+    opacity 700ms ease,
+    transform 700ms ease,
+    box-shadow 300ms ease,
+    background-color 300ms ease,
+    color 300ms ease;
+}
+
+.reveal-up.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 .grain {
   position: relative;
 }
@@ -123,6 +139,12 @@ button {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .reveal-up {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
   .parallax-band-one,
   .parallax-band-two {
     animation: none;

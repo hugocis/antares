@@ -1,6 +1,6 @@
 "use client";
 
-import { Hop, Search } from "lucide-react";
+import { Beaker, Hop, Search, Sparkles } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import { defaultBeers, readSavedBeers, type Beer } from "@/lib/beers";
 
@@ -37,7 +37,7 @@ export function BeerCatalogue() {
 
   return (
     <div className="grid gap-5">
-      <div className="grid gap-3 rounded-sm border border-[#eaded4] bg-white p-3 sm:grid-cols-[1fr_auto] sm:items-center">
+      <div className="reveal-up grid gap-3 rounded-sm border border-[#eaded4] bg-white/88 p-3 shadow-sm backdrop-blur sm:grid-cols-[1fr_auto] sm:items-center">
         <label className="relative block">
           <span className="sr-only">Search beers</span>
           <Search
@@ -70,11 +70,12 @@ export function BeerCatalogue() {
       </div>
 
       {filteredBeers.length > 0 ? (
-        <div className="grid gap-4 lg:grid-cols-3">
-          {filteredBeers.map((beer) => (
+        <div className="grid gap-5 lg:grid-cols-3">
+          {filteredBeers.map((beer, index) => (
             <article
               key={beer.id}
-              className="flex min-h-[460px] flex-col overflow-hidden rounded-sm border border-[#eaded4] bg-white shadow-sm"
+              className="reveal-up group flex min-h-[520px] flex-col overflow-hidden rounded-sm border border-[#eaded4] bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-[#4d2d1d]/12"
+              style={{ transitionDelay: `${index * 80}ms` }}
             >
               <BeerPhoto beer={beer} />
               <div className="flex flex-1 flex-col justify-between p-5">
@@ -83,24 +84,27 @@ export function BeerCatalogue() {
                     <span className="rounded-sm bg-[#f7efe6] px-3 py-1 text-xs font-bold uppercase tracking-[0.14em] text-[#4d2d1d]">
                       {beer.style}
                     </span>
-                    <Hop size={22} className="text-[#a7662b]" />
+                    <span className="grid size-10 place-items-center rounded-sm bg-[#fff6ec] text-[#a7662b] transition group-hover:bg-[#4d2d1d] group-hover:text-white">
+                      <Hop size={21} />
+                    </span>
                   </div>
                   <h3 className="text-2xl font-black">{beer.name}</h3>
                   <p className="mt-3 text-sm leading-6 text-[#66554c]">{beer.notes}</p>
+                  <IngredientChips ingredients={beer.ingredients} />
                 </div>
                 <dl className="mt-8 grid gap-3 text-sm">
-                  <div className="flex justify-between gap-4 border-t border-[#eaded4] pt-3">
-                    <dt className="text-[#77685f]">Ingredients</dt>
-                    <dd className="max-w-[58%] text-right font-medium">
-                      {beer.ingredients}
-                    </dd>
-                  </div>
                   <div className="flex justify-between border-t border-[#eaded4] pt-3">
-                    <dt className="text-[#77685f]">ABV</dt>
+                    <dt className="flex items-center gap-2 text-[#77685f]">
+                      <Beaker size={15} />
+                      ABV
+                    </dt>
                     <dd className="font-bold">{beer.abv}</dd>
                   </div>
                   <div className="flex justify-between border-t border-[#eaded4] pt-3">
-                    <dt className="text-[#77685f]">Batch</dt>
+                    <dt className="flex items-center gap-2 text-[#77685f]">
+                      <Sparkles size={15} />
+                      Batch
+                    </dt>
                     <dd className="font-bold">{beer.batchInfo}</dd>
                   </div>
                 </dl>
@@ -134,10 +138,33 @@ function BeerPhoto({ beer }: { beer: Beer }) {
 
   return (
     <div
-      className="aspect-[4/3] overflow-hidden bg-[#f7efe6] bg-cover bg-center"
+      className="relative aspect-[4/3] overflow-hidden bg-[#f7efe6] bg-cover bg-center transition duration-700 group-hover:scale-[1.03]"
       role="img"
       aria-label={`${beer.name} beer`}
       style={{ backgroundImage: `url(${beer.imageUrl})` }}
-    />
+    >
+      <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#231814]/62 to-transparent" />
+    </div>
+  );
+}
+
+function IngredientChips({ ingredients }: { ingredients: string }) {
+  const chips = ingredients
+    .split(",")
+    .map((ingredient) => ingredient.trim())
+    .filter(Boolean)
+    .slice(0, 4);
+
+  return (
+    <div className="mt-5 flex flex-wrap gap-2">
+      {chips.map((ingredient) => (
+        <span
+          key={ingredient}
+          className="rounded-sm border border-[#eaded4] bg-[#fffdfa] px-2.5 py-1 text-xs font-bold text-[#4d2d1d]"
+        >
+          {ingredient}
+        </span>
+      ))}
+    </div>
   );
 }
