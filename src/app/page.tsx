@@ -1,7 +1,6 @@
 import {
   ArrowRight,
   Camera,
-  ChevronRight,
   Mail,
   MapPin,
   Menu,
@@ -33,12 +32,6 @@ export default function Home() {
             <a href="#beers">Beers</a>
             <a href="#about">About</a>
             <a href="#contact">Contact</a>
-            <Link
-              href="/admin/login"
-              className="rounded-sm border border-[#4d2d1d] px-4 py-2 text-[#231814] transition hover:bg-[#4d2d1d] hover:text-white"
-            >
-              Brewer login
-            </Link>
           </div>
 
           <details className="group relative md:hidden">
@@ -55,9 +48,6 @@ export default function Home() {
               <a className="px-3 py-2" href="#contact">
                 Contact
               </a>
-              <Link className="px-3 py-2" href="/admin/login">
-                Brewer login
-              </Link>
             </div>
           </details>
         </nav>
@@ -101,19 +91,13 @@ export default function Home() {
       <section id="beers" className="relative overflow-hidden py-16 sm:py-24">
         <div className="parallax-band parallax-band-one" aria-hidden="true" />
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
-          <div className="mb-8 flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
+          <div className="mb-8 max-w-2xl">
             <div>
               <p className="text-sm font-bold uppercase tracking-[0.18em] text-[#a7662b]">
                 Beers
               </p>
               <h2 className="mt-3 text-3xl font-black sm:text-5xl">Current batches</h2>
             </div>
-            <Link
-              href="/admin/login"
-              className="inline-flex items-center gap-2 text-sm font-bold text-[#4d2d1d]"
-            >
-              Brewer login <ChevronRight size={16} />
-            </Link>
           </div>
 
           <BeerCatalogue />
