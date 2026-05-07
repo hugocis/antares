@@ -29,6 +29,18 @@ export default async function AdminLoginPage({
         <form action={loginAdmin} className="grid gap-4">
           <label className="grid gap-2">
             <span className="text-xs font-bold uppercase tracking-[0.14em] text-[#77685f]">
+              Brewer
+            </span>
+            <input
+              name="brewer"
+              type="text"
+              autoComplete="username"
+              className="min-h-12 rounded-sm border border-[#eaded4] bg-[#fffdfa] px-3 text-sm outline-none transition focus:border-[#4d2d1d]"
+              placeholder="Goyos or Alex"
+            />
+          </label>
+          <label className="grid gap-2">
+            <span className="text-xs font-bold uppercase tracking-[0.14em] text-[#77685f]">
               Password
             </span>
             <input

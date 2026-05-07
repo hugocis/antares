@@ -33,7 +33,7 @@ export default function Home() {
             <a href="#beers">Beers</a>
             <a href="#contact">Contact</a>
             <Link
-              href="/admin"
+              href="/admin/login"
               className="rounded-sm border border-[#4d2d1d] px-4 py-2 text-[#231814] transition hover:bg-[#4d2d1d] hover:text-white"
             >
               Brewer login
@@ -54,7 +54,7 @@ export default function Home() {
               <a className="px-3 py-2" href="#contact">
                 Contact
               </a>
-              <Link className="px-3 py-2" href="/admin">
+              <Link className="px-3 py-2" href="/admin/login">
                 Brewer login
               </Link>
             </div>
@@ -132,7 +132,7 @@ export default function Home() {
               <h2 className="mt-3 text-3xl font-black sm:text-5xl">Current batches</h2>
             </div>
             <Link
-              href="/admin"
+              href="/admin/login"
               className="inline-flex items-center gap-2 text-sm font-bold text-[#4d2d1d]"
             >
               Brewer login <ChevronRight size={16} />
