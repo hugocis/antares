@@ -4,29 +4,25 @@ const steps = [
   {
     title: "Malt",
     text: "Recipes start with the grain bill: pale malt, roasted notes, wheat, rye, and whatever the batch needs.",
-    image:
-      "https://images.unsplash.com/photo-1586444248902-2f64eddc13df?auto=format&fit=crop&w=900&q=80",
+    visual: "grain",
     icon: Leaf,
   },
   {
     title: "Brew day",
     text: "Small-volume brewing keeps the process hands-on, flexible, and easy to adjust between batches.",
-    image:
-      "https://images.unsplash.com/photo-1559526324-593bc073d938?auto=format&fit=crop&w=900&q=80",
+    visual: "kettle",
     icon: FlaskConical,
   },
   {
     title: "Fermentation",
     text: "Yeast, temperature, and time do the quiet work that gives each beer its final character.",
-    image:
-      "https://images.unsplash.com/photo-1566633806327-68e152aaf26d?auto=format&fit=crop&w=900&q=80",
+    visual: "fermenter",
     icon: TimerReset,
   },
   {
     title: "Tasting",
     text: "Every batch ends with notes: aroma, body, finish, and what should change next time.",
-    image:
-      "https://images.unsplash.com/photo-1518099074172-2e47ee6cfdc0?auto=format&fit=crop&w=900&q=80",
+    visual: "glass",
     icon: Wine,
   },
 ];
@@ -55,12 +51,7 @@ export function ProcessGallery() {
                 className="reveal-up group overflow-hidden rounded-sm border border-white/12 bg-white/7 backdrop-blur"
                 style={{ transitionDelay: `${index * 70}ms` }}
               >
-                <div
-                  className="aspect-[4/5] bg-cover bg-center transition duration-700 group-hover:scale-105"
-                  style={{ backgroundImage: `url(${step.image})` }}
-                  role="img"
-                  aria-label={`${step.title} brewing process`}
-                />
+                <ProcessVisual kind={step.visual} label={`${step.title} brewing process`} />
                 <div className="p-4">
                   <div className="mb-4 grid size-10 place-items-center rounded-sm bg-[#e4b276] text-[#231814]">
                     <Icon size={19} />
@@ -74,5 +65,29 @@ export function ProcessGallery() {
         </div>
       </div>
     </section>
+  );
+}
+
+function ProcessVisual({ kind, label }: { kind: string; label: string }) {
+  const labels: Record<string, string> = {
+    grain: "grain bill",
+    kettle: "brew day",
+    fermenter: "slow ferment",
+    glass: "taste notes",
+  };
+
+  return (
+    <div
+      className={`process-visual process-visual-${kind} aspect-[4/5] overflow-hidden`}
+      role="img"
+      aria-label={label}
+    >
+      <div className="process-visual-grid" />
+      <div className="process-visual-mark">
+        <span>{labels[kind]}</span>
+      </div>
+      <div className="process-visual-shape process-visual-shape-one" />
+      <div className="process-visual-shape process-visual-shape-two" />
+    </div>
   );
 }

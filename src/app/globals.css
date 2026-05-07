@@ -104,6 +104,98 @@ button {
   transform: rotate(4deg);
 }
 
+.process-visual {
+  position: relative;
+  background:
+    radial-gradient(circle at 22% 18%, rgba(255, 255, 255, 0.24), transparent 22%),
+    linear-gradient(135deg, #5a351f, #1d1410);
+}
+
+.process-visual-grain {
+  background:
+    radial-gradient(circle at 24% 30%, rgba(242, 212, 168, 0.9) 0 7px, transparent 8px),
+    radial-gradient(circle at 42% 48%, rgba(228, 178, 118, 0.88) 0 8px, transparent 9px),
+    radial-gradient(circle at 64% 32%, rgba(167, 102, 43, 0.78) 0 7px, transparent 8px),
+    linear-gradient(135deg, #e4b276, #6f421f 58%, #231814);
+}
+
+.process-visual-kettle {
+  background:
+    radial-gradient(circle at 50% 30%, rgba(255, 255, 255, 0.3), transparent 20%),
+    linear-gradient(135deg, #a7662b, #3a2116 62%, #14100d);
+}
+
+.process-visual-fermenter {
+  background:
+    radial-gradient(circle at 50% 18%, rgba(255, 255, 255, 0.28), transparent 18%),
+    linear-gradient(135deg, #65785b, #302016 62%, #14100d);
+}
+
+.process-visual-glass {
+  background:
+    radial-gradient(circle at 50% 25%, rgba(255, 255, 255, 0.42), transparent 14%),
+    linear-gradient(135deg, #f2d4a8, #a7662b 48%, #231814);
+}
+
+.process-visual-grid {
+  position: absolute;
+  inset: 0;
+  opacity: 0.18;
+  background-image:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.32) 1px, transparent 1px),
+    linear-gradient(rgba(255, 255, 255, 0.24) 1px, transparent 1px);
+  background-size: 34px 34px;
+}
+
+.process-visual-mark {
+  position: absolute;
+  inset-inline: 18px;
+  bottom: 18px;
+  display: flex;
+  justify-content: center;
+}
+
+.process-visual-mark span {
+  border: 1px solid rgba(255, 255, 255, 0.34);
+  background: rgba(29, 20, 16, 0.48);
+  padding: 8px 10px;
+  color: white;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  backdrop-filter: blur(12px);
+}
+
+.process-visual-shape {
+  position: absolute;
+  border: 1px solid rgba(255, 255, 255, 0.34);
+  background: rgba(255, 255, 255, 0.08);
+  transition: transform 700ms ease;
+}
+
+.process-visual-shape-one {
+  left: 22%;
+  top: 18%;
+  width: 42%;
+  height: 54%;
+}
+
+.process-visual-shape-two {
+  right: 18%;
+  top: 28%;
+  width: 24%;
+  height: 34%;
+}
+
+.group:hover .process-visual-shape-one {
+  transform: translateY(-8px) rotate(-2deg);
+}
+
+.group:hover .process-visual-shape-two {
+  transform: translateY(10px) rotate(3deg);
+}
+
 @supports (animation-timeline: view()) {
   .parallax-band-one {
     animation: drift-one linear both;
