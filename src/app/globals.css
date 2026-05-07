@@ -66,3 +66,65 @@ button {
   background-size: 42px 42px;
   mask-image: linear-gradient(to bottom, black, transparent 70%);
 }
+
+.parallax-band {
+  pointer-events: none;
+  position: absolute;
+  inset-inline: -10%;
+  height: 160px;
+  opacity: 0.42;
+  transform: translateZ(0);
+}
+
+.parallax-band-one {
+  top: 56px;
+  background: linear-gradient(90deg, transparent, rgba(167, 102, 43, 0.16), transparent);
+  transform: rotate(-4deg);
+}
+
+.parallax-band-two {
+  bottom: 42px;
+  background: linear-gradient(90deg, transparent, rgba(77, 45, 29, 0.12), transparent);
+  transform: rotate(4deg);
+}
+
+@supports (animation-timeline: view()) {
+  .parallax-band-one {
+    animation: drift-one linear both;
+    animation-timeline: view();
+    animation-range: entry -20% exit 120%;
+  }
+
+  .parallax-band-two {
+    animation: drift-two linear both;
+    animation-timeline: view();
+    animation-range: entry -20% exit 120%;
+  }
+}
+
+@keyframes drift-one {
+  from {
+    transform: translateY(-54px) rotate(-4deg);
+  }
+
+  to {
+    transform: translateY(58px) rotate(-4deg);
+  }
+}
+
+@keyframes drift-two {
+  from {
+    transform: translateY(46px) rotate(4deg);
+  }
+
+  to {
+    transform: translateY(-46px) rotate(4deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .parallax-band-one,
+  .parallax-band-two {
+    animation: none;
+  }
+}
