@@ -34,6 +34,7 @@ export default async function AdminLoginPage({
             <input
               name="brewer"
               type="text"
+              required
               autoComplete="username"
               className="min-h-12 rounded-sm border border-[#eaded4] bg-[#fffdfa] px-3 text-sm outline-none transition focus:border-[#4d2d1d]"
               placeholder="Goyos or Alex"
@@ -55,7 +56,7 @@ export default async function AdminLoginPage({
 
           {error ? (
             <p className="rounded-sm border border-[#d9a09a] bg-[#fff4f2] px-3 py-2 text-sm font-medium text-[#8c2f24]">
-              Incorrect password. Try again.
+              Incorrect brewer or password. Try again.
             </p>
           ) : null}
 
@@ -69,8 +70,8 @@ export default async function AdminLoginPage({
         </form>
 
         <p className="mt-5 text-xs leading-5 text-[#77685f]">
-          Local demo password: <span className="font-mono">antares-admin</span>. Change it
-          with <span className="font-mono">ADMIN_PASSWORD</span> before publishing.
+          Access is private. Configure <span className="font-mono">ADMIN_PASSWORD</span>{" "}
+          and <span className="font-mono">AUTH_SECRET</span> in Vercel before publishing.
         </p>
       </section>
     </main>
