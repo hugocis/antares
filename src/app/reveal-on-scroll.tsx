@@ -4,12 +4,6 @@ import { useEffect } from "react";
 
 export function RevealOnScroll() {
   useEffect(() => {
-    const elements = Array.from(document.querySelectorAll<HTMLElement>(".reveal-up"));
-
-    if (elements.length === 0) {
-      return;
-    }
-
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -22,9 +16,26 @@ export function RevealOnScroll() {
       { threshold: 0.16 },
     );
 
-    elements.forEach((element) => observer.observe(element));
+    function observeHiddenElements() {
+      const elements = Array.from(
+        document.querySelectorAll<HTMLElement>(".reveal-up:not(.is-visible)"),
+      );
 
-    return () => observer.disconnect();
+      elements.forEach((element) => observer.observe(element));
+    }
+
+    const mutationObserver = new MutationObserver(observeHiddenElements);
+
+    observeHiddenElements();
+    mutationObserver.observe(document.body, {
+      childList: true,
+      subtree: true,
+    });
+
+    return () => {
+      mutationObserver.disconnect();
+      observer.disconnect();
+    };
   }, []);
 
   return null;
